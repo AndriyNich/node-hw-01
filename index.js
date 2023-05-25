@@ -1,6 +1,11 @@
 // fs.readFile("./db/contacts.json")
 //   .then((data) => console.log(data.toString()))
 //   .catch((error) => console.log(error));
-const { test } = require("./contacts");
+const {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+} = require("./contacts");
 
-test();
+console.table(listContacts());

@@ -3,10 +3,12 @@ const path = require("path");
 
 const contactsPath = path.join(__dirname, "/db/contacts.json");
 
-const getContactsList = async (contactsPath) => {
+const getContactsList = async () => {
   try {
     const fileText = await fs.readFile(contactsPath, "utf-8");
+
     const contactsList = JSON.parse(fileText);
+
     return contactsList;
   } catch (error) {
     console.log(error);
@@ -14,9 +16,22 @@ const getContactsList = async (contactsPath) => {
   }
 };
 
-// TODO: задокументувати кожну функцію
+// returns a list of contacts
 function listContacts() {
-  // ...твій код
+  const getContactsList = async () => {
+    try {
+      const fileText = await fs.readFile(contactsPath);
+
+      const contactsList = JSON.parse(fileText);
+
+      return contactsList;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+  return getContactsList();
+  // getContactsList().then((response) => console.table(response));
 }
 
 // TODO: задокументувати кожну функцію
