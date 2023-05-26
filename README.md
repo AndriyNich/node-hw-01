@@ -5,25 +5,25 @@
 
 node index.js --action="list"
 
-![listContacts]('./images/listContacts.jpg')
+![listContacts](./images/listContacts.jpg)
 
 ## Отримуємо контакт по id
 
 node index.js --action="get" --id 05olLMgyVQdWRwgKfg5J6
 
-![getContactByID]('./images/getContactById.jpg')
+![getContactByID](./images/getContactById.jpg)
 
 ## Додаємо контакт
 
 node index.js --action="add" --name Mango --email mango@gmail.com --phone
 322-22-22
 
-![add]('./images/addContact.jpg')
+![add](./images/addContact.jpg)
 
 ## Видаляємо контакт
 
 node index.js --action="remove" --id qdggE76Jtbfd9eWJHrssH
 
-![remove]('./images/removeContact.jpg')
+![remove](./images/removeContact.jpg)
 
 ```
