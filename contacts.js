@@ -1,11 +1,12 @@
-const fs = require("fs").promises;
-const path = require("path");
+const fs = require('fs').promises;
+const { nanoid } = require('nanoid');
+const path = require('path');
 
-const contactsPath = path.join(__dirname, "/db/contacts.json");
+const contactsPath = path.join(__dirname, '/db/contacts.json');
 
 const getContactsList = async () => {
   try {
-    const fileText = await fs.readFile(contactsPath, "utf-8");
+    const fileText = await fs.readFile(contactsPath, 'utf-8');
 
     const contactsList = JSON.parse(fileText);
 
@@ -17,36 +18,42 @@ const getContactsList = async () => {
 };
 
 // returns a list of contacts
-function listContacts() {
-  const getContactsList = async () => {
-    try {
-      const fileText = await fs.readFile(contactsPath);
+async function listContacts() {
+  const fileText = await fs.readFile(contactsPath);
+  return JSON.parse(fileText);
+}
 
-      const contactsList = JSON.parse(fileText);
+// return contact by id
+async function getContactById(contactId) {
+  const contacts = await listContacts();
+  const contact = contacts.find(item => item.id === contactId);
+  return contact || null;
+}
 
-      return contactsList;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
+// remove contact by id
+async function removeContact(contactId) {
+  const contacts = await listContacts();
+  const idx = contacts.findIndex(item => item.id === contactId);
+  if (idx === -1) {
+    return null;
+  }
+  const [result] = contacts.splice(idx, 1);
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  return result;
+}
+
+// add new contact
+async function addContact(name, email, phone) {
+  const contacts = await listContacts();
+  const newContact = {
+    id: nanoid(),
+    name,
+    email,
+    phone,
   };
-  return getContactsList();
-  // getContactsList().then((response) => console.table(response));
-}
-
-// TODO: задокументувати кожну функцію
-function getContactById(contactId) {
-  // ...твій код
-}
-
-// TODO: задокументувати кожну функцію
-function removeContact(contactId) {
-  // ...твій код
-}
-
-// TODO: задокументувати кожну функцію
-function addContact(name, email, phone) {
-  // ...твій код
+  contacts.push(newContact);
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  return newContact;
 }
 
 module.exports = {
