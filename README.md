@@ -1,7 +1,5 @@
 # Виконання завдання
-
-'
-
+`
 # Отримуємо і виводимо весь список контактів у вигляді таблиці (console.table)
 
 node index.js --action="list"
@@ -17,4 +15,5 @@ node index.js --action="add" --name Mango --email mango@gmail.com --phone
 
 # Видаляємо контакт
 
-node index.js --action="remove" --id qdggE76Jtbfd9eWJHrssH '
+node index.js --action="remove" --id qdggE76Jtbfd9eWJHrssH 
+`
