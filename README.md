@@ -4,9 +4,11 @@
 ## Отримуємо і виводимо весь список контактів у вигляді таблиці (console.table)
 
 node index.js --action="list"
+```
 
 ![listContacts](./images/list-contacts.jpg)
 
+```
 ## Отримуємо контакт по id
 
 node index.js --action="get" --id 05olLMgyVQdWRwgKfg5J6
